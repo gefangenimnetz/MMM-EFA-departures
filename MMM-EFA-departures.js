@@ -1,10 +1,10 @@
 /* Magic Mirror
  * Module: MMM-EFA-departures
  *
- * By yo-less / https://github.com/yo-less
+ * By gefangenimnetz / https://github.com/gefangenimnetz/MMM-EFA-departures
  * MIT Licensed.
  * 
- * v1.0.3
+ * v0.0.1
  */
 
 Module.register("MMM-EFA-departures", {
@@ -92,46 +92,6 @@ Module.register("MMM-EFA-departures", {
             }
             wrapper.appendChild(departuresUL);
         }
-
         return wrapper;
     }
-
-
-
-
-
-    // var departure = document.createElement("td");
-    //     departure.className = "departure";
-    //     if (data.time == "0"){
-    //     departure.innerHTML = this.translate("NOW");
-    //     } else if (data.time.charAt(2)==":"){   // Append "Uhr" to data given in "hh:mm" format if config language is German
-    //     departure.innerHTML = data.time + this.translate("TIME");
-    //     } else if (data.time.substr(data.time.length - 5) == "1 min") {
-    //     departure.innerHTML = 'In ' + data.time.slice(0, -4) + ' ' + this.translate("MINUTE"); // Give remaining time as 'In 1 minute' rather than as '1 min'
-    //     } else if (data.time.substr(data.time.length - 3) == "min") {
-    //     departure.innerHTML = 'In ' + data.time.slice(0, -4) + ' ' + this.translate("MINUTES"); // Give remaining time as 'in d minutes' rather than as '\d min'
-    //     } else {
-    //     departure.innerHTML = data.time;
-    //     }
-    //     row.appendChild(departure);
-
-//     dateTime
-// day
-// :
-// "16"
-// hour
-// :
-// "7"
-// minute
-// :
-// "37"
-// month
-// :
-// "1"
-// weekday
-// :
-// "2"
-// year
-// :
-// "2017"
 });
