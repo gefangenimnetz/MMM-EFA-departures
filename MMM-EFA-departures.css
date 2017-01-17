@@ -22,6 +22,15 @@
     border-radius: 2px;
 }
 
+.MMM-EFA-departures .departures__departure__direction {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
 .MMM-EFA-departures .departures__departure__time-relative {
     position: absolute;
     right: 0;

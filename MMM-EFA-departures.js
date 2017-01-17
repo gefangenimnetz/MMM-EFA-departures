@@ -29,6 +29,24 @@ Module.register("MMM-EFA-departures", {
         setInterval(function() {
             self.sendSocketNotification("CONFIG", self.config);
         }, this.config.reload);
+
+        moment.updateLocale('de', {
+            relativeTime : {
+                future : 'in %s',
+                past : 'vor %s',
+                s : 'ein paar Sek.',
+                m : '1 Min.',
+                mm : '%d Min.',
+                h : '1 Std.',
+                hh : '%d Std.',
+                d : '1 Tag',
+                dd : '%d Tagen',
+                M : '1 Mon.',
+                MM : '%s Mon.',
+                y : '1 Jahr',
+                yy : '%s Jahren'
+            }
+        });
     },
 
     getStyles: function () {
