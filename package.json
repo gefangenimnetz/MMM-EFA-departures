@@ -1,6 +1,6 @@
 {
     "name": "MMM-EFA-departures",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "MagicMirror² module - show departures for public transport stations using the EFA system.",
     "repository": {
         "type": "git",
@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/gefangenimnetz/MMM-EFA-departures#readme",
     "dependencies": {
-        "request": "^2.74.0"
+        "request": "^2.74.0",
+        "moment": "^2.17.1"
     }
 }
