@@ -10,8 +10,8 @@
 Module.register("MMM-EFA-departures", {
 
     defaults: {
-        efaUrl: "http://www.efa-bw.de/nvbw/XSLT_DM_REQUEST",
-        stopID: "7210149",
+        efaUrl: "http://efa.vrr.de/vrr/XSLT_DM_REQUEST",
+        stopID: "20019039",
         stopName: "Loading station name …",
         lines: ['all'],
         maxDepartures: 7,
