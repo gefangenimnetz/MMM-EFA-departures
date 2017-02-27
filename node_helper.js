@@ -13,7 +13,7 @@ module.exports = NodeHelper.create({
             this.config = payload;
 
             var efa_url = this.config.efaUrl;
-                efa_url += '&name_dm=' + this.config.stopID;
+                efa_url += '?name_dm=' + this.config.stopID;
                 efa_url += '&type_dm=any';
                 efa_url += '&line=' + this.config.lines.join('&line=');
                 efa_url += '&outputFormat=json';
