@@ -16,7 +16,7 @@ module.exports = NodeHelper.create({
                 efa_url += '?name_dm=' + this.config.stopID;
                 efa_url += '&type_dm=any';
                 efa_url += '&line=' + this.config.lines.join('&line=');
-                efa_url += '&outputFormat=json';
+                efa_url += '&outputFormat=json&mode=direct';
                 efa_url += '&limit=' + this.config.maxDepartures;
                 efa_url += '&itdTime=' + moment().format('HHmm');
                 efa_url += '&itdDate=' + moment().format('YYYYMMDD');
