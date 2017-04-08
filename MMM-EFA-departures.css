@@ -29,10 +29,10 @@
     display: inline-block;
     white-space: nowrap;
     vertical-align: top;
+	padding-right:15px;
 }
 
 .MMM-EFA-departures .departures__departure__time-relative {
-    position: absolute;
     right: 0;
     opacity: 1;
     transition: opacity 1s;
