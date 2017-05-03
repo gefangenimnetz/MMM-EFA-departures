@@ -10,17 +10,17 @@
 Module.register("MMM-EFA-departures", {
 
     defaults: {
-		efaUrl: "http://efa.vrr.de/standard/XSLT_DM_REQUEST",
-		stopID: "20018235",						//stopID offered by the provider
-		stopName: "MMM-EFA is loading",			//initial module name
-		lines: ['all'], 						//lines: ['RBG:72782: :H','RBG:72782: :R'] would only show the line 782, operated by "Rheinbahn" in Düsseldorf (both directions)
-		reload: 60000,							//interval in ms (60000=60s)
-		realDepTime: true,						//use real-time data
-		toggleDepTime: false,					//Toggle relative/absolute time
-		toggleDepTimePerReload: 6,				//Every 10 seconds
-		fade: true,								//fade brightness
-		fadePoint: 0.25,						//Start on 1/4th of the list. (1/maxDepartures would be ideal)
-		maxDepartures: 4						//maximum amount of departures displayed
+        efaUrl: "http://efa.vrr.de/standard/XSLT_DM_REQUEST",
+        stopID: "20018235",                     //stopID offered by the provider
+        stopName: "MMM-EFA is loading",         //initial module name
+        lines: ['all'],                         //lines: ['RBG:72782: :H','RBG:72782: :R'] would only show the line 782, operated by "Rheinbahn" in Düsseldorf (both directions)
+        reload: 60000,                          //interval in ms (60000=60s)
+        realDepTime: true,                      //use real-time data
+        toggleDepTime: false,                   //Toggle relative/absolute time
+        toggleDepTimePerReload: 6,              //Every 10 seconds
+        fade: true,                             //fade brightness
+        fadePoint: 0.25,                        //Start on 1/4th of the list. (1/maxDepartures would be ideal)
+        maxDepartures: 4                        //maximum amount of departures displayed
     },
 
     start: function () {
@@ -127,17 +127,16 @@ Module.register("MMM-EFA-departures", {
         var destination = document.createElement("td");
         destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction +'</span>';
         row.appendChild(destination);
-		
+        
         var departureTime = new Date;
-		if (this.config.realDepTime) {
-		departureTime = new Date(data.realDateTime.year, data.realDateTime.month - 1, data.realDateTime.day, data.realDateTime.hour, data.realDateTime.minute, 0);
-		} else {
-		departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
-		}
+        if (this.config.realDepTime) {
+        departureTime = new Date(data.realDateTime.year, data.realDateTime.month - 1, data.realDateTime.day, data.realDateTime.hour, data.realDateTime.minute, 0);
+        } else {
+        departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
+        }
         var departure = document.createElement("td");
         departure.className = "departures__departure";
-        departure.innerHTML = '<span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span><span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span>';
-
+        departure.innerHTML = '<span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span><span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span>';
         row.appendChild(departure);
 
         return row;
