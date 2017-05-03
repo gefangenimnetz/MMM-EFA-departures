@@ -16,7 +16,6 @@ Module.register("MMM-EFA-departures", {
 		lines: ['all'], 						//lines: ['RBG:72782: :H','RBG:72782: :R'] would only show the line 782, operated by "Rheinbahn" in Düsseldorf (both directions)
 		reload: 60000,							//interval in ms (60000=60s)
 		realDepTime: true,						//use real-time data
-		relativeDepTime: true,					// When "toggle" is disabled change between absolute/relative Time,not implemented yet
 		toggleDepTime: false,					//Toggle relative/absolute time
 		toggleDepTimePerReload: 6,				//Every 10 seconds
 		fade: true,								//fade brightness
@@ -137,7 +136,7 @@ Module.register("MMM-EFA-departures", {
 		}
         var departure = document.createElement("td");
         departure.className = "departures__departure";
-        departure.innerHTML = '<span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span><span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span>';
+        departure.innerHTML = '<span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span><span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span>';
 
         row.appendChild(departure);
 
