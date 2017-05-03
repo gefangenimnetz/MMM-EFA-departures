@@ -12,7 +12,7 @@ Module.register("MMM-EFA-departures", {
     defaults: {
         efaUrl: "http://efa.vrr.de/vrr/XSLT_DM_REQUEST",
         stopID: "20019039",
-        stopName: "Loading station name …",
+        stopName: "MMM-EFA is loading",
         lines: ['all'],
         maxDepartures: 7,
         reload: 1 * 60 * 1000,

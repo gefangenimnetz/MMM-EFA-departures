@@ -12,14 +12,16 @@ http://www.eg-blog.de/?p=822
 			config: {
 				efaUrl: "http://efa.vrr.de/standard/XSLT_DM_REQUEST",
 				stopID: "20018235",
-				stopName: "Loading station name …",
+				stopName: "MMM-EFA is loading",
 				lines: ['all'],
-				maxDepartures: 4,
 				reload: 1 * 60 * 1000,
-				toggleDepTime: true,
+				realDepTime: true, //use real-time data
+				relativeDepTime: true, // When "toggle" is disabled change between absolute/relative Time,not implemented yet
+				toggleDepTime: false, //Toggle relative/absolute time
 				toggleDepTimePerReload: 6, //Every 10 seconds
 				fade: true,
-				fadePoint: 0.25 // Start on 1/4th of the list.			
+				fadePoint: 0.25 // Start on 1/4th of the list.
+				maxDepartures: 4,
 			}
 		},
 ```
