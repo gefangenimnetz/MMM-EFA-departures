@@ -1,7 +1,7 @@
 /* Magic Mirror
  * Module: MMM-EFA-departures
  *
- * By gefangenimnetz / https://github.com/gefangenimnetz/MMM-EFA-departures
+ * By gefangenimnetz, Dom1n1c / https://github.com/Dom1n1c/MMM-EFA-departures
  * MIT Licensed.
  * 
  * v0.0.1
@@ -16,7 +16,9 @@ Module.register("MMM-EFA-departures", {
         lines: ['all'],
         maxDepartures: 7,
         reload: 1 * 60 * 1000,
-        toggleDepTime: true,
+        realDepTime: true, //use DateTime
+        relativeDepTime: true, // When "toggle" is disabled change between absolute/relative Time
+        toggleDepTime: false, //Toggle relative/absolute time
         toggleDepTimePerReload: 6, //Every 10 seconds
         fade: true,
         fadePoint: 0.25 // Start on 1/4th of the list.
