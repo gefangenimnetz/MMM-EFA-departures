@@ -10,18 +10,18 @@
 Module.register("MMM-EFA-departures", {
 
     defaults: {
-        efaUrl: "http://efa.vrr.de/vrr/XSLT_DM_REQUEST",
-        stopID: "20019039",
-        stopName: "MMM-EFA is loading",
-        lines: ['all'],
-        maxDepartures: 7,
-        reload: 1 * 60 * 1000,
-        realDepTime: true, //use DateTime
-        relativeDepTime: true, // When "toggle" is disabled change between absolute/relative Time
-        toggleDepTime: false, //Toggle relative/absolute time
-        toggleDepTimePerReload: 6, //Every 10 seconds
-        fade: true,
-        fadePoint: 0.25 // Start on 1/4th of the list.
+		efaUrl: "http://efa.vrr.de/standard/XSLT_DM_REQUEST",
+		stopID: "20018235",						//stopID offered by the provider
+		stopName: "MMM-EFA is loading",			//initial module name
+		lines: ['all'], 						//lines: ['RBG:72782: :H','RBG:72782: :R'] would only show the line 782, operated by "Rheinbahn" in Düsseldorf (both directions)
+		reload: 60000,							//interval in ms (60000=60s)
+		realDepTime: true,						//use real-time data
+		relativeDepTime: true,					// When "toggle" is disabled change between absolute/relative Time,not implemented yet
+		toggleDepTime: false,					//Toggle relative/absolute time
+		toggleDepTimePerReload: 6,				//Every 10 seconds
+		fade: true,								//fade brightness
+		fadePoint: 0.25,						//Start on 1/4th of the list. (1/maxDepartures would be ideal)
+		maxDepartures: 4						//maximum amount of departures displayed
     },
 
     start: function () {
