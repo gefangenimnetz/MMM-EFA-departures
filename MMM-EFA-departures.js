@@ -126,8 +126,7 @@ Module.register("MMM-EFA-departures", {
         row.appendChild(line);
 
         var destination = document.createElement("td");
-        destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction;
-        +'</span>';
+        destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction +'</span>';
         row.appendChild(destination);
 		
         var departureTime = new Date;
