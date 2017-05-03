@@ -129,8 +129,13 @@ Module.register("MMM-EFA-departures", {
         destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction;
         +'</span>';
         row.appendChild(destination);
-
-        var departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
+		
+        var departureTime = new Date;
+		if (this.config.realDepTime) {
+		departureTime = new Date(data.realDateTime.year, data.realDateTime.month - 1, data.realDateTime.day, data.realDateTime.hour, data.realDateTime.minute, 0);
+		} else {
+		departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
+		}
         var departure = document.createElement("td");
         departure.className = "departures__departure";
         departure.innerHTML = '<span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span><span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span>';
