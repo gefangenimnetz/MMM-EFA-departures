@@ -129,7 +129,7 @@ Module.register("MMM-EFA-departures", {
         row.appendChild(destination);
         
         var departureTime = new Date;
-        if (this.config.realDepTime) {
+        if (this.config.realDepTime && data.realDateTime) {
         departureTime = new Date(data.realDateTime.year, data.realDateTime.month - 1, data.realDateTime.day, data.realDateTime.hour, data.realDateTime.minute, 0);
         } else {
         departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
