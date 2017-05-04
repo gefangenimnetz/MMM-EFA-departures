@@ -34,7 +34,7 @@ Module.register("MMM-EFA-departures", {
         moment.updateLocale('de', {
             relativeTime: {
                 future: 'in %s',
-                past: 'vor %s',
+                past: 'Sofort',
                 s: 'ein paar Sek.',
                 m: '1 Min.',
                 mm: '%d Min.',
