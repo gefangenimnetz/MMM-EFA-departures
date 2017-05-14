@@ -1,11 +1,11 @@
 # MMM-EFA-departures
 MagicMirror² module to show departures for public transport stations using the EFA system.
 
-some Station IDs can be found here for example:  
-http://www.eg-blog.de/?p=822
+you can get the information by viewing the source (in Chrome for instance) of the EFA-Page  
+**view-source:http://efa.vrr.de/standard/XSLT_DM_REQUEST**  
+some line IDs provided by efa.vrr.de: https://pastebin.com/9mFcr5nx
 
-you can get the information by viewing the source of the EFA-Page  
-view-source:http://efa.vrr.de/standard/XSLT_DM_REQUEST
+
 
 **Example Configuration for Düsseldorf HBF/Main Station:**
 ```
