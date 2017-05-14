@@ -41,7 +41,7 @@ traveline south east: Journey Planner
 http://www.travelinesoutheast.org.uk/se/XSLT_DM_REQUEST
 ```
 
-**Getting Station and Line IDs**
+**Getting Station and Line IDs**  
 you can get the information by viewing the source (in Chrome for instance) of the EFA-Page  
 **view-source:http://efa.vrr.de/standard/XSLT_DM_REQUEST**  
 I extracted a few lines and stations (most of them for efa.vrr.de)  
