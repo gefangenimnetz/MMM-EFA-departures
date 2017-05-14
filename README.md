@@ -1,33 +1,6 @@
 # MMM-EFA-departures
 MagicMirror² module to show departures for public transport stations using the EFA system.
 
-you can get the information by viewing the source (in Chrome for instance) of the EFA-Page  
-**view-source:http://efa.vrr.de/standard/XSLT_DM_REQUEST**  
-I extracted a few lines and stations (most of them for efa.vrr.de)  
-[Stations](https://github.com/Dom1n1c/MMM-EFA-departures/files/999639/stations.txt)  
-[Lines](https://github.com/Dom1n1c/MMM-EFA-departures/files/999640/lines.txt)  
-using a script from this [blog](http://www.eg-blog.de/?p=822)  
-```
-#!/bin/bash
-i=$1
-j=$2
-until [ $i -gt $j ]
-do
-	wget http://efa.vrr.de/standard/XSLT_DM_REQUEST --no-verbose --post-data "language=de&name_dm=$i&type_dm=stop&mode=direct&dmLineSelectionAll=1&depType=STOPEVENTS&includeCompleteStopSeq=1&useRealtime=1&limit=8&itdLPxx_hideNavigationBar=false&itdLPxx_transpCompany=Refresh&timeOffset=0"
-	grep 'Abfahrten ab:' XSLT_DM_REQUEST >> temp
-	if [ -s temp ]; then
-		echo -n $i >> Liste.txt
-		echo $i
-		echo -n " " >> Liste.txt
-		grep 'Abfahrten ab:' XSLT_DM_REQUEST | sed -e "s/^\s*<td colspan="3">//" -e "s/<\/td>\s*$//" | cut -b32- >>Liste.txt
-		rm temp
-	fi
-	rm XSLT_DM_REQUEST
-	i=$(( $i + 1 ))
-done
-```
-
-
 **Example Configuration for Düsseldorf HBF/Main Station:**
 ```
 {
@@ -66,4 +39,31 @@ http://www.ding.eu/mobile/ding2/XSLT_DM_REQUEST
 
 traveline south east: Journey Planner
 http://www.travelinesoutheast.org.uk/se/XSLT_DM_REQUEST
+```
+
+**Getting Station and Line IDs**
+you can get the information by viewing the source (in Chrome for instance) of the EFA-Page  
+**view-source:http://efa.vrr.de/standard/XSLT_DM_REQUEST**  
+I extracted a few lines and stations (most of them for efa.vrr.de)  
+[Stations](https://github.com/Dom1n1c/MMM-EFA-departures/files/999639/stations.txt)  
+[Lines](https://github.com/Dom1n1c/MMM-EFA-departures/files/999640/lines.txt)  
+using a script from this [blog](http://www.eg-blog.de/?p=822)  
+```
+#!/bin/bash
+i=$1
+j=$2
+until [ $i -gt $j ]
+do
+	wget http://efa.vrr.de/standard/XSLT_DM_REQUEST --no-verbose --post-data "language=de&name_dm=$i&type_dm=stop&mode=direct&dmLineSelectionAll=1&depType=STOPEVENTS&includeCompleteStopSeq=1&useRealtime=1&limit=8&itdLPxx_hideNavigationBar=false&itdLPxx_transpCompany=Refresh&timeOffset=0"
+	grep 'Abfahrten ab:' XSLT_DM_REQUEST >> temp
+	if [ -s temp ]; then
+		echo -n $i >> Liste.txt
+		echo $i
+		echo -n " " >> Liste.txt
+		grep 'Abfahrten ab:' XSLT_DM_REQUEST | sed -e "s/^\s*<td colspan="3">//" -e "s/<\/td>\s*$//" | cut -b32- >>Liste.txt
+		rm temp
+	fi
+	rm XSLT_DM_REQUEST
+	i=$(( $i + 1 ))
+done
 ```
