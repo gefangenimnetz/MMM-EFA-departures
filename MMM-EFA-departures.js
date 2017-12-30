@@ -31,7 +31,9 @@ Module.register("MMM-EFA-departures", {
             self.sendSocketNotification("CONFIG", self.config);
         }, this.config.reload);
 
-        moment.updateLocale('de', {
+        // define new EFA locale
+        moment.defineLocale('de-efa', {
+            parentLocale: 'de',
             relativeTime: {
                 future: 'in %s',
                 past: 'Sofort',
@@ -67,6 +69,10 @@ Module.register("MMM-EFA-departures", {
     },
 
     getDom: function () {
+
+        // switch to EFA locale
+        moment.locale('de-efa');
+
         var wrapper = document.createElement("div");
         var header = document.createElement("header");
         header.innerHTML = this.config.stopName;
@@ -112,6 +118,10 @@ Module.register("MMM-EFA-departures", {
             }
             wrapper.appendChild(departuresTable);
         }
+        
+        // reset locale to the one in the config
+        moment.locale(config.language);
+        
         return wrapper;
     },
 
