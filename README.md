@@ -31,6 +31,9 @@ http://efa.vrr.de/standard/XSLT_DM_REQUEST
 VVS / Verkehrs- und Tarifverbund Stuttgart
 http://www2.vvs.de/vvs/XSLT_DM_REQUEST
 
+BW - Baden_Württemberg 
+http://www.efa-bw.de/nvbw/XSLT_DM_REQUEST
+
 MVV / Münchner Verkehrs- und Tarifverbund
 http://efa.mvv-muenchen.de/mobile/XSLT_DM_REQUEST
 
