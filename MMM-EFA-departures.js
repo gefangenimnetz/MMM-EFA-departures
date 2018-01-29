@@ -16,6 +16,7 @@ Module.register("MMM-EFA-departures", {
         lines: ['all'],                         //lines: ['RBG:72782: :H','RBG:72782: :R'] would only show the line 782, operated by "Rheinbahn" in Düsseldorf (both directions)
         reload: 60000,                          //interval in ms (60000=60s)
         realDepTime: true,                      //use real-time data
+        relativeDepTime: true,                  //when "toggle" is disabled change between absolute/relative Time
         toggleDepTime: false,                   //Toggle relative/absolute time
         toggleDepTimePerReload: 6,              //Every 10 seconds
         fade: true,                             //fade brightness
@@ -95,7 +96,13 @@ Module.register("MMM-EFA-departures", {
                 this.toggleTimeInt = window.setInterval(function () {
                     classie.toggle(departuresTable, 'departures__departure--show-time');
                 }, (this.config.reload / this.config.toggleDepTimePerReload));
+            }else if(!this.config.relativeDepTime){
+                classie.toggle(departuresTable, 'departures__departure--show-time');
             }
+            
+            departures.sort(function(a, b) { 
+                return parseFloat(a.countdown) - parseFloat(b.countdown); 
+            });
 
             for (var d in departures) {
 
