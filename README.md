@@ -14,11 +14,16 @@ MagicMirror² module to show departures for public transport stations using the 
         reload: 60000,                                     //interval in ms (60000=60s)
         realDepTime: true,                                 //use real-time data
         relativeDepTime: true,                             // When "toggle" is disabled change between absolute/relative Time,not implemented yet
-        toggleDepTime: true,                              //Toggle relative/absolute time
+        toggleDepTime: true,                               //Toggle relative/absolute time
         toggleDepTimePerReload: 6,                         //Every 10 seconds
         fade: true,                                        //fade brightness
         fadePoint: 0.25,                                   //Start on 1/4th of the list. (1/maxDepartures would be ideal)
         maxDepartures: 4                                   //maximum amount of departures displayed
+		replaceStationnames:                               //key:value pairs of station names that should be replaced (See example below)
+		{
+			"D-Heinrich-Heine-Allee U"	:	"Düsseldorf HHA"
+			//"name.startsWith"			:	"replace_with"
+		}
     }
 },
 ```
