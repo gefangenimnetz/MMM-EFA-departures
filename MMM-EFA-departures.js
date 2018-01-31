@@ -21,10 +21,7 @@ Module.register("MMM-EFA-departures", {
         toggleDepTimePerReload: 6,              //Every 10 seconds
         fade: true,                             //fade brightness
         fadePoint: 0.25,                        //Start on 1/4th of the list. (1/maxDepartures would be ideal)
-        maxDepartures: 4,                       //maximum amount of departures displayed
-		replaceStationnames:					//key:value pairs of station names that should be replaced
-		{
-		}
+        maxDepartures: 4                        //maximum amount of departures displayed
     },
 
     start: function () {
@@ -135,22 +132,6 @@ Module.register("MMM-EFA-departures", {
         return wrapper;
     },
 
-	
-	replaceStation: function (text)
-	{
-        let temp = text;
-			//for (let i = 0; i < this.config.replaceStationnames.values.length; i += 1)
-			for (let [key, value] of Object.entries(this.config.replaceStationnames))
-			{
-				if (temp.startsWith(key))
-				{
-					temp = value;
-				}
-			}
-        return temp;
-    },
-	
-	
     createDataRow: function (data) {
 
         var row = document.createElement("tr");
@@ -161,7 +142,7 @@ Module.register("MMM-EFA-departures", {
         row.appendChild(line);
 
         var destination = document.createElement("td");
-        destination.innerHTML = '<span class="departures__departure__direction small">' + this.replaceStation(data.servingLine.direction) +'</span>';
+        destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction +'</span>';
         row.appendChild(destination);
         
         var departureTime = new Date;
