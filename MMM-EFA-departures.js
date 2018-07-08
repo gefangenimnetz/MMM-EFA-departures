@@ -62,11 +62,6 @@ Module.register("MMM-EFA-departures", {
         return ["moment.js", "classie.js"];
     },
 
-    convertToJson: function (payload) {
-        payload = parser.toJson(payload);
-        return payload;
-    },
-
     socketNotificationReceived: function (notification, payload) {
         if (notification === "TRAMS" + this.config.stopID) {
             this.efa_data = payload;
