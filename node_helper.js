@@ -13,7 +13,7 @@ module.exports = NodeHelper.create({
     socketNotificationReceived: function (notification, payload) {
         if (notification === 'CONFIG') {
             this.config = payload;
-            if (this.config.efaUrl.endsWith("XML_DM_REQUEST")) this.outputFormat = "XML";
+            if (this.config.efaUrl.toLowerCase().endsWith("xml_dm_request")) this.outputFormat = "XML";
 
             var efa_url = this.config.efaUrl;
             efa_url += '?name_dm=' + this.config.stopID;
