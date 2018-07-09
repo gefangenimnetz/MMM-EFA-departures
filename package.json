@@ -16,7 +16,7 @@
         "Fahrplanauskunft",
         "Bahn",
         "Bus",
-        "module"    
+        "module"
     ],
     "author": "Dom1n1c",
     "license": "MIT",
@@ -26,6 +26,7 @@
     "homepage": "https://github.com/Dom1n1c/MMM-EFA-departures#readme",
     "dependencies": {
         "request": "^2.74.0",
-        "moment": "^2.17.1"
+        "moment": "^2.17.1",
+        "simple-xml2json": "^1.2.3"
     }
 }

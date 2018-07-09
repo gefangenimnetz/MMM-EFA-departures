@@ -7,6 +7,7 @@
  * v0.0.1
  */
 
+
 Module.register("MMM-EFA-departures", {
 
     defaults: {
@@ -88,7 +89,6 @@ Module.register("MMM-EFA-departures", {
             var departuresTable = document.createElement("table");
             departuresTable.classList.add("small", "table");
             departuresTable.border = '0';
-
             var departures = this.efa_data.departureList;
 
             if (this.config.toggleDepTime) {
@@ -96,12 +96,12 @@ Module.register("MMM-EFA-departures", {
                 this.toggleTimeInt = window.setInterval(function () {
                     classie.toggle(departuresTable, 'departures__departure--show-time');
                 }, (this.config.reload / this.config.toggleDepTimePerReload));
-            }else if(!this.config.relativeDepTime){
+            } else if (!this.config.relativeDepTime) {
                 classie.toggle(departuresTable, 'departures__departure--show-time');
             }
-            
-            departures.sort(function(a, b) { 
-                return parseFloat(a.countdown) - parseFloat(b.countdown); 
+
+            departures.sort(function (a, b) {
+                return parseFloat(a.countdown) - parseFloat(b.countdown);
             });
 
             for (var d in departures) {
@@ -125,10 +125,10 @@ Module.register("MMM-EFA-departures", {
             }
             wrapper.appendChild(departuresTable);
         }
-        
+
         // reset locale to the one in the config
         moment.locale(config.language);
-        
+
         return wrapper;
     },
 
@@ -142,25 +142,26 @@ Module.register("MMM-EFA-departures", {
         row.appendChild(line);
 
         var destination = document.createElement("td");
-        destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction +'</span>';
+        destination.innerHTML = '<span class="departures__departure__direction small">' + data.servingLine.direction + '</span>';
         row.appendChild(destination);
-        
+
         var departureTime = new Date;
+        var originalDepartureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
         if (this.config.realDepTime && data.realDateTime) {
             departureTime = new Date(data.realDateTime.year, data.realDateTime.month - 1, data.realDateTime.day, data.realDateTime.hour, data.realDateTime.minute, 0);
         } else {
-            departureTime = new Date(data.dateTime.year, data.dateTime.month - 1, data.dateTime.day, data.dateTime.hour, data.dateTime.minute, 0);
+            departureTime = originalDepartureTime;
         }
 
         var departure = document.createElement("td");
         departure.className = "departures__departure";
-        departure.innerHTML = '<span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span><span class="departures__departure__time-clock small bright">' + moment(departureTime).format('HH:mm') + '</span>';
+        departure.innerHTML = '<span class="departures__departure__time-relative small bright">' + moment(departureTime).fromNow() + '</span><span class="departures__departure__time-clock small bright">' + moment(originalDepartureTime).format('HH:mm') + '</span>';
         row.appendChild(departure);
-        
+
         var delay = document.createElement("td");
         delay.className = "departures__delay";
         if (data.servingLine.delay > 0) {
-            delay.innerHTML = '<span class="departures__delay__time xsmall">+ '+ data.servingLine.delay + '</span>';
+            delay.innerHTML = '<span class="departures__delay__time xsmall">+ ' + data.servingLine.delay + '</span>';
         }
         row.appendChild(delay);
 

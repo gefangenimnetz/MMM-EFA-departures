@@ -42,6 +42,10 @@ http://www.ding.eu/mobile/ding2/XSLT_DM_REQUEST
 
 traveline south east: Journey Planner
 http://www.travelinesoutheast.org.uk/se/XSLT_DM_REQUEST
+
+BEG - Bayern Fahrplan DEFAS
+https://mobile.defas-fgi.de/beg/XML_DM_REQUEST
+
 ```
 
 **Getting Station and Line IDs**  
