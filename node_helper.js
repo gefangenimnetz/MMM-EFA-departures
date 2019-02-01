@@ -25,7 +25,7 @@ module.exports = NodeHelper.create({
             efa_url += '&limit=' + this.config.maxDepartures;
             efa_url += '&itdTime=' + moment().format('HHmm');
             efa_url += '&itdDate=' + moment().format('YYYYMMDD');
-            console.log(efa_url);
+            
             this.getData(efa_url, this.config.stopID);
         }
     },
@@ -37,9 +37,13 @@ module.exports = NodeHelper.create({
             }
             if (response && response.statusCode === 200) {
                 if (this.outputFormat === "XML") {
-                    result = this.convertToDefaultFormat(body)
+                    if(this.config.efaUrl.includes("/beg/")){
+                        result = this.convertToDefaultFormat(body);
+                    }else{
+                        result = this.convertFullToDefaultFormat(body);
+                    }
                 } else {
-                    result = JSON.parse(body)
+                    result = JSON.parse(body);
                 }
                 this.sendSocketNotification("TRAMS" + stopID, result);
             } else {
@@ -62,7 +66,7 @@ module.exports = NodeHelper.create({
             const origDepTime = depTime["t"]; // e.g. 06:20
             const realDepDay = depTime["rda"];
             const realDepTime = depTime["rt"];
-
+            
             const dt = this.getDepTime(origDepDay, origDepTime)
             if (typeof realDepDay !== "undefined" && typeof realDepTime !== "undefined") {
                 realDt = this.getDepTime(realDepDay, realDepTime)
@@ -82,6 +86,52 @@ module.exports = NodeHelper.create({
                 realDateTime: realDt,
                 dateTime: dt
             })
+        }
+        return {departureList: list};
+    },
+    
+    convertFullToDefaultFormat: function (body) {
+        const departures = parser.parser(body)["itdrequest"]["itddeparturemonitorrequest"]["itddeparturelist"]["itddeparture"];
+        const list = [];
+        for (const d in departures) {
+            const currentDeparture = departures[d];
+            let realDt = null;
+            let delay = currentDeparture["itdservingline"]["itdnotrain"]["delay"];
+
+            const depDateTime = currentDeparture["itddatetime"];
+            const dt = {
+                year: depDateTime["itddate"]["year"],
+                month: depDateTime["itddate"]["month"],
+                day: depDateTime["itddate"]["day"],
+                hour: depDateTime["itdtime"]["hour"],
+                minute: depDateTime["itdtime"]["minute"],
+                seconds: 0
+            };
+            
+            const realDepDateTime = currentDeparture["itdrtdatetime"];
+            if (typeof realDepDateTime !== "undefined") {
+                const realDt = {
+                    year: realDepDateTime["itddate"]["year"],
+                    month: realDepDateTime["itddate"]["month"],
+                    day: realDepDateTime["itddate"]["day"],
+                    hour: realDepDateTime["itdtime"]["hour"],
+                    minute: realDepDateTime["itdtime"]["minute"],
+                    seconds: 0
+                };
+            }
+
+            const cDt = (realDt === null) ? dt : realDt;
+            list.push({
+                stopName: currentDeparture["stopname"],
+                countdown: this.getDiffInMinutes(this.parseToDate(cDt), new Date()),
+                servingLine: {
+                    number: currentDeparture["itdservingline"]["number"],
+                    direction: currentDeparture["itdservingline"]["direction"],
+                    delay: delay
+                },
+                realDateTime: realDt,
+                dateTime: dt
+            });
         }
         return {departureList: list};
     },
