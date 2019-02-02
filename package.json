@@ -1,27 +1,32 @@
 {
     "name": "MMM-EFA-departures",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "MagicMirror² module - show departures for public transport stations using the EFA system.",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gefangenimnetz/MMM-EFA-departures.git"
+        "url": "git+https://github.com/Dom1n1c/MMM-EFA-departures.git"
     },
     "keywords": [
         "MagicMirror",
         "EFA",
         "smart mirror",
         "departures",
-        "station board",    
-        "module"    
+        "station board",
+        "Fahrplan",
+        "Fahrplanauskunft",
+        "Bahn",
+        "Bus",
+        "module"
     ],
-    "author": "gefangenimnetz",
+    "author": "Dom1n1c",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/gefangenimnetz/MMM-EFA-departures/issues"
+        "url": "https://github.com/Dom1n1c/MMM-EFA-departures/issues"
     },
-    "homepage": "https://github.com/gefangenimnetz/MMM-EFA-departures#readme",
+    "homepage": "https://github.com/Dom1n1c/MMM-EFA-departures#readme",
     "dependencies": {
         "request": "^2.74.0",
-        "moment": "^2.17.1"
+        "moment": "^2.17.1",
+        "simple-xml2json": "^1.2.3"
     }
 }
